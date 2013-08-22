@@ -19,13 +19,25 @@ def parse_source(src):
         assert len(row) == 10, (src, num, len(row))
         yield row
 
+def org_numbers(data):
+    org = {}
+    for row in data:
+        org[row[1]] = org.get(row[1], 0) + 1
+    return sorted((v, k) for k, v in org.iteritems())
+
 def main():
     eng = parse_source(ENG_SOURCE)
     fra = parse_source(FRA_SOURCE)
 
     eng_headings = next(eng)
     fra_headings = next(fra)
-    print eng_headings, fra_headings
+
+    eng_orgs = org_numbers(eng)
+    fra_orgs = org_numbers(fra)
+    assert len(eng_orgs) == len(fra_orgs)
+
+    for e, f in zip(eng_orgs, fra_orgs):
+        print e, '-', f
 
 
 main()
