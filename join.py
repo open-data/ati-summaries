@@ -8,7 +8,7 @@ FRA_SOURCE = 'data/ati_fr.csv'
 
 def unicode_csv_reader(src, dialect=csv.excel, **kwargs):
     # csv.py doesn't do Unicode; encode temporarily as UTF-8:
-    csv_reader = csv.reader(open(src),
+    csv_reader = csv.reader(open(src, 'rb'),
                             dialect=dialect, **kwargs)
     for row in csv_reader:
         # decode UTF-8 back to Unicode, cell by cell:
@@ -36,8 +36,10 @@ def main():
     fra_orgs = org_numbers(fra)
     assert len(eng_orgs) == len(fra_orgs)
 
-    for e, f in zip(eng_orgs, fra_orgs):
-        print e, '-', f
-
+    with open('data/orgs.csv', 'wb') as f:
+        writer = csv.writer(f)
+        writer.writerows(
+            [str(en), e.encode('utf-8'), str(fn), f.encode('utf-8')]
+            for (en, e), (fn, f) in zip(eng_orgs, fra_orgs))
 
 main()
