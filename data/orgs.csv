@@ -1,81 +1,83 @@
-1,Canada Development  Investment Corporation,1,Centre canadien d'hygiène et de sécurité au travail
-1,Canadian Centre for Occupational Health & Safety,1,Commission canadienne des affaires polaires
-1,Canadian International Trade Tribunal,1,Commission canadienne du tourisme
-1,Canadian Polar Commission,1,Corporation de développement des investissements du Canada
-1,Canadian Tourism Commission,1,Financement agricole Canada
-1,Farm Credit Canada,1,Fondation canadienne pour l’innovation Fondation canadienne pour l’innovation
-1,Jacques Cartier and Champlain Bridges IncorporatedJacques Cartier and Champlain Bridges Incorporated,1,Port de Trois-Rivières
-1,Port of Trois-Rivi�res,1,Régime de soins de santé de la fonction publique
-1,Public Service Health Care Plan,1,Tribunal canadien du commerce extérieur
-2,Canada Deposit Insurance Corporation,2,Administration de Pilotage des Grands Lacs
-2,Copyright Board of Canada,2,Administration portuaire de Port Alberni
-2,Great Lakes Pilotage Authority,2,Commission du droit d'auteur du Canada
-2,Port Alberni Port Authority,2,Office d’évaluation environnementale et socio-économique du Yukon
-2,Yukon Environmental and Socio-economic Assessment Board,2,Société d’assurance-dépôts du Canada
-3,Canada Industrial Relations Board,3,Administration canadienne de la sûreté du transport aérien
-3,Canada Science and Technology Museums Corporation,3,Administration portuaire de Nanaïmo
-3,Canadian Air Transport Security Authority,3,Administration portuaire de Toronto
+1,Canada Development  Investment Corporation,1,Corporation de développement des investissements du Canada
+1,Canadian Centre for Occupational Health & Safety,1,Centre canadien d'hygiène et de sécurité au travail
+1,Canadian International Trade Tribunal,1,Tribunal canadien du commerce extérieur
+1,Canadian Polar Commission,1,Commission canadienne des affaires polaires
+1,Canadian Tourism Commission,1,Commission canadienne du tourisme
+,,1,Fondation canadienne pour l’innovation Fondation canadienne pour l’innovation
+1,Farm Credit Canada,1,Financement agricole Canada
+1,Jacques Cartier and Champlain Bridges IncorporatedJacques Cartier and Champlain Bridges Incorporated,,
+1,Port of Trois-Rivi�res,1,Port de Trois-Rivières
+1,Public Service Health Care Plan,1,Régime de soins de santé de la fonction publique
+2,Canada Deposit Insurance Corporation,2,Société d’assurance-dépôts du Canada
+2,Copyright Board of Canada,2,Commission du droit d'auteur du Canada
+2,Great Lakes Pilotage Authority,2,Administration de Pilotage des Grands Lacs
+2,Port Alberni Port Authority,2,Administration portuaire de Port Alberni
+2,Yukon Environmental and Socio-economic Assessment Board,2,Office d’évaluation environnementale et socio-économique du Yukon
+3,Canada Industrial Relations Board,3,Conseil canadien des relations industrielles
+3,Canada Science and Technology Museums Corporation,,
+3,Canadian Air Transport Security Authority,3,Administration canadienne de la sûreté du transport aérien
 3,Canadian Dairy Commission,3,Commission canadienne du lait
-3,Nanaimo Port Authority,3,Conseil canadien des normes
-3,National Gallery of Canada,3,Conseil canadien des relations industrielles
-3,Public Service Staffing Tribunal,3,Musée des beaux-arts du Canada
-3,Standards Council of Canada,3,Organisation Information de contact Annee Mois Numero de la demande Sommaire de la demande Disposition Nombre de pages
-3,Toronto Port Authority,3,Tribunal de la dotation de la fonction publique
+3,Nanaimo Port Authority,3,Administration portuaire de Nanaïmo
+3,National Gallery of Canada,3,Musée des beaux-arts du Canada
+3,Public Service Staffing Tribunal,3,Tribunal de la dotation de la fonction publique
+,,3,Organisation Information de contact Annee Mois Numero de la demande Sommaire de la demande Disposition Nombre de pages
+3,Standards Council of Canada,3,Conseil canadien des normes
+3,Toronto Port Authority,3,Administration portuaire de Toronto
 4,National Arts Centre,4,Centre national des Arts
 4,Public Service Labour Relations Board,4,Commission des relations de travail dans la fonction publique
 5,Canada Foundation for Innovation,4,Fondation canadienne pour l’innovation
-5,Canadian Grain Commission,5,Agence de la consommation en matière financière du Canada
-5,Federal Bridge Corporation Limited,5,Commission canadienne des grains
-5,Financial Consumer Agency of Canada,5,La Société des ponts fédéraux Limitée
+5,Canadian Grain Commission,5,Commission canadienne des grains
+5,Federal Bridge Corporation Limited,5,La Société des ponts fédéraux Limitée
+5,Financial Consumer Agency of Canada,5,Agence de la consommation en matière financière du Canada
 5,Public Sector Pension Investment Board,5,Office d’investissement des régimes de pensions du secteur public
-6,Canadian Museum of Civilization Corporation,6,Commissariat à l'intégrité du secteur public du Canada
-6,Office of the Public Sector Integrity Commissioner of Canada,6,Conseil des arts du Canada
-7,Canada Council for the Arts,6,Société du Musée canadien des civilisations
-7,Canada Lands Company,7,Administration portuaire de Montréal
+6,Canadian Museum of Civilization Corporation,6,Société du Musée canadien des civilisations
+6,Office of the Public Sector Integrity Commissioner of Canada,6,Commissariat à l'intégrité du secteur public du Canada
+7,Canada Council for the Arts,6,Conseil des arts du Canada
+7,Canada Lands Company,7,Société immobilière du Canada
 7,Canadian Museum for Human Rights,7,Musée canadien pour les droits de la personne
-7,Jacques Cartier and Champlain Bridges Incorporated,7,Société immobilière du Canada
-7,Montreal Port Authority,7,Tribunal des anciens combattants (révision et appel) Canada
-7,Veterans Review and Appeal Board,8,Banque de développement du Canada
-8,Business Development Bank of Canada,8,Port de Sept-Îles
-8,Port of Sept-Iles,8,Téléfilm Canada
-8,Telefilm Canada,9,Comité des griefs des Forces canadiennes
-9,Canadian Forces Grievance Board,9,Commissariat au lobbying du Canada
-9,Office of the Commissioner of Lobbying of Canada,9,Corporation commerciale canadienne
-11,Canadian Northern Economic Development Agency,9,Les Ponts Jacques-Cartier et Champlain Incorporée
-11,Commission for Public Complaints Against the RCMP,11,Agence canadienne de développement économique du Nord
+7,Jacques Cartier and Champlain Bridges Incorporated,9,Les Ponts Jacques-Cartier et Champlain Incorporée
+7,Montreal Port Authority,7,Administration portuaire de Montréal
+7,Veterans Review and Appeal Board,7,Tribunal des anciens combattants (révision et appel) Canada
+8,Business Development Bank of Canada,8,Banque de développement du Canada
+8,Port of Sept-Iles,8,Port de Sept-Îles
+8,Telefilm Canada,8,Téléfilm Canada
+9,Canadian Forces Grievance Board,9,Comité des griefs des Forces canadiennes
+9,Office of the Commissioner of Lobbying of Canada,9,Commissariat au lobbying du Canada
+11,Canadian Northern Economic Development Agency,11,Agence canadienne de développement économique du Nord
+11,Commission for Public Complaints Against the RCMP,11,Commission des plaintes du public contre la GRC
 11,International Development Research Centre,11,Centre de recherches pour le développement international
-12,Social Sciences and Humanities Research Council,11,Commission des plaintes du public contre la GRC
-13,Canadian Commercial Corporation,12,Conseil de recherches en sciences humaines
+12,Social Sciences and Humanities Research Council,12,Conseil de recherches en sciences humaines
+13,Canadian Commercial Corporation,9,Corporation commerciale canadienne
 13,Military Police Complaints Commission,13,Commission d’examen des plaintes concernant la police militaire
 14,Canadian Transportation Agency,14,Office des transports du Canada
 15,Office of the Correctional Investigator,15,Bureau de l'enquêteur correctionnel
-17,Old Port of Montreal Corporation,17,Monnaie royale canadienne
-17,Royal Canadian Mint,17,Société du Vieux-Port de Montréal
-18,Canadian Institutes of Health Research,18,Agence spatiale canadienne
-18,Canadian Space Agency,18,Diversification de l'économie de l'Ouest Canada
-18,Western Economic Diversification Canada,18,Instituts de recherche en santé du Canada
+17,Old Port of Montreal Corporation,17,Société du Vieux-Port de Montréal
+17,Royal Canadian Mint,17,Monnaie royale canadienne
+18,Canadian Institutes of Health Research,18,Instituts de recherche en santé du Canada
+18,Canadian Space Agency,18,Agence spatiale canadienne
+18,Western Economic Diversification Canada,18,Diversification de l'économie de l'Ouest Canada
 19,Natural Sciences and Engineering Research Council of Canada,19,Conseil de recherches en sciences naturelles et en génie du Canada
 20,VIA Rail Canada,20,VIA Rail Canada
-21,Canadian Human Rights Commission,21,Bureau du vérificateur général du Canada
-21,Office of the Auditor General of Canada,21,Commission canadienne des droits de la personne
+21,Canadian Human Rights Commission,21,Commission canadienne des droits de la personne
+21,Office of the Auditor General of Canada,21,Bureau du vérificateur général du Canada
 22,Quebec Port Authority,22,Administration portuaire de Québec
-23,Defence Construction Canada,23,Commissariat aux langues officielles
-23,Office of the Commissioner of the Official Languages,23,Construction de Défense Canada
-25,Financial Transactions and Reports Analysis Centre of Canada,25,Bureau du surintendant des institutions financières
-25,Office of the Superintendent of Financial Institutions,25,Centre d'analyse des opérations et déclarations financières du Canada
-27,Export Development Canada,27,Commission des libérations conditionnelles du Canada
-27,Parole Board of Canada,27,Exportation et développement Canada
+23,Defence Construction Canada,23,Construction de Défense Canada
+23,Office of the Commissioner of the Official Languages,23,Commissariat aux langues officielles
+25,Financial Transactions and Reports Analysis Centre of Canada,25,Centre d'analyse des opérations et déclarations financières du Canada
+25,Office of the Superintendent of Financial Institutions,25,Bureau du surintendant des institutions financières
+27,Export Development Canada,27,Exportation et développement Canada
+27,Parole Board of Canada,27,Commission des libérations conditionnelles du Canada
 28,National Defence and Canadian Forces Ombudsman,28,Ombudsman de la Défense nationale et des Forces canadiennes
 29,FedDev Ontario,29,FedDev Ontario
 30,Public Prosecution Service of Canada,30,Service des poursuites pénales du Canada
 33,Canadian Environmental Assessment Agency,33,Agence canadienne d'évaluation environnementale
 35,Status of Women Canada,34,Condition féminine Canada
-36,National Film Board of Canada,36,Comité de surveillance des activités de renseignement de sécurité
-36,Security Intelligence Review Committee,36,Office national du film du Canada
+36,National Film Board of Canada,36,Office national du film du Canada
+36,Security Intelligence Review Committee,36,Comité de surveillance des activités de renseignement de sécurité
 38,Canada School of  Public Service,38,École de la fonction  publique du Canada
 39,Canadian Radio-television and Telecommunications Commission,39,Conseil de la radiodiffusion et des télécommunications canadiennes
-42,Canada-Newfoundland and Labrador Offshore Petroleum Board,41,Commission de la fonction publique du Canada
-42,Public Service Commission of Canada,42,Office Canada–Terre-Neuve-et Labrador des hydrocarbures extracôtiers
+42,Canada-Newfoundland and Labrador Offshore Petroleum Board,42,Office Canada–Terre-Neuve-et Labrador des hydrocarbures extracôtiers
+42,Public Service Commission of Canada,41,Commission de la fonction publique du Canada
 45,Atlantic Canada Opportunities Agency,45,Agence de promotion économique du Canada atlantique
 45,Shared Services Canada,45,Services partagés Canada
 49,Office of the Privacy Commissioner of Canada,49,Commissariat à la protection de la vie privée du Canada
@@ -84,18 +86,18 @@
 55,Passport Canada,55,Passeport Canada
 58,Statistics Canada,58,Statistique Canada
 61,Infrastructure Canada,61,Infrastructure Canada
-71,Canada Mortgage and Housing Corporation,68,Anciens Combattants Canada
+71,Canada Mortgage and Housing Corporation,71,Société canadienne d'hypothèques et de logement
 71,Canadian Nuclear Safety Commission,71,Commission canadienne du sûreté nucléaire
-77,Transportation Safety Board of Canada,71,Société canadienne d'hypothèques et de logement
+77,Transportation Safety Board of Canada,77,Bureau de la sécurité des transports du Canada
 78,National Research Council Canada,72,Conseil national de recherches Canada
-79,Veterans Affairs Canada,77,Bureau de la sécurité des transports du Canada
-86,Bank of Canada,86,Postes Canada
-94,Canada Post,87,Banque du Canada
+79,Veterans Affairs Canada,68,Anciens Combattants Canada
+86,Bank of Canada,87,Banque du Canada
+94,Canada Post,86,Postes Canada
 95,Atomic Energy of Canada Limited,95,Énergie atomique du Canada limitée
 99,Parks Canada,97,Parcs Canada
 111,National Capital Commission,114,Commission de la capitale nationale
-111,National Energy Board,116,Commission de l'immigration et du statut de réfugié du Canada
-116,Immigration and Refugee Board of Canada,131,Office national de l'énergie
+111,National Energy Board,131,Office national de l'énergie
+116,Immigration and Refugee Board of Canada,116,Commission de l'immigration et du statut de réfugié du Canada
 137,Agriculture and Agri-Food Canada,152,Agriculture et Agroalimentaire Canada
 157,Canadian Security Intelligence Service,157,Service canadien du renseignement de sécurité
 158,Public Health Agency of Canada,158,Agence de la santé publique du Canada
