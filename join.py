@@ -42,7 +42,7 @@ def parse_source(src):
             'num': row[4],
             'summary': row[5],
             'disp': row[6],
-            'pages': row[7],
+            'pages': row[7].replace(u'.', u''),
             'contact': row[8],
             }
 
