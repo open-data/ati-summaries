@@ -68,10 +68,12 @@ def write_unmatched(org_reqs, unmatched, file_name, org_mapping):
     writer = csv.writer(f)
 
     unmatched = list(unmatched)
+    print len(unmatched)
     unmatched.extend(req
         for org in org_reqs.values()
         for req in org.values()
         if req is not DUPLICATED)
+    print len(unmatched)
     unmatched.sort(key=lambda req: (
         org_mapping.get(req['org'], req['org']),
         req['num'],
