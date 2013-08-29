@@ -1,7 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import csv
+import xlwt
 
 ENG_SOURCE = 'data/ati_en.csv'
 FRA_SOURCE = 'data/ati_fr.csv'
@@ -84,6 +85,46 @@ def write_unmatched(org_reqs, unmatched, file_name, org_mapping):
         for org in unmatched)
 
 
+def write_matched(req_pairs, eng_org, fra_org, file_name):
+    book = xlwt.Workbook()
+    sheet = book.add_sheet('ATI AI')
+    sheet.write(0, 3, eng_org)
+    sheet.write(0, 4, fra_org)
+    for col, h in enumerate([u'Year / Annee', u'Month / Mois',
+            u'Request Number / Numero de la demande',
+            u'ENG Summary / ENG Sommaire de la demande',
+            u'FRA Summary / FRA Sommaire de la demande',
+            u'Disposition',
+            u'Number of Pages / Nombre de pages', 
+            u'Contact Information / Information de contact']):
+        sheet.write(1, col, h)
+    sheet.col(0).width = 5 * 256
+    sheet.col(1).width = 4 * 256
+    sheet.col(2).width = 15 * 256
+    sheet.col(3).width = 30 * 256
+    sheet.col(4).width = 30 * 256
+    sheet.col(5).width = 20 * 256
+
+    row = 2
+    sheet.set_panes_frozen(True) # frozen headings instead of split panes
+    sheet.set_horz_split_pos(row) # in general, freeze after last heading row
+    sheet.set_remove_splits(True) # if user does unfreeze, don't leave a split there
+
+    req_pairs = sorted(req_pairs, key=lambda (eng, fra):
+        (eng['year'], eng['month'], eng['num']))
+    for eng, fra in req_pairs:
+        def c(key):
+            if eng[key] != fra[key]:
+                return eng[key] + u' / ' + fra[key]
+            return eng[key]
+        for col, t in enumerate([c('year'), c('month'),
+                c('num'), eng['summary'], fra['summary'],
+                c('disp'), c('pages'), c('contact')]):
+            sheet.write(row, col, t)
+        row += 1
+    book.save(file_name)
+
+
 def main():
     eng = parse_source(ENG_SOURCE)
     fra = parse_source(FRA_SOURCE)
@@ -108,6 +149,11 @@ def main():
             if not fra_req or fra_req is DUPLICATED:
                 continue
             matched_num.append(num)
+
+        if eng_org.startswith('Health Canada'):
+            write_matched([(eng[m], fra[m]) for m in matched_num],
+                eng_org, fra_org, 'data/health_canada.xls')
+
         for num in matched_num:
             del eng[num]
             del fra[num]
