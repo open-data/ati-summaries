@@ -63,7 +63,7 @@ def group_requests_by_org(source):
     return org_numbers, unmatched
 
 
-def write_unmatched(org_reqs, unmatched, file_name):
+def write_unmatched(org_reqs, unmatched, file_name, org_mapping):
     f = open(file_name, 'wb')
     writer = csv.writer(f)
 
@@ -72,7 +72,10 @@ def write_unmatched(org_reqs, unmatched, file_name):
         for org in org_reqs.values()
         for req in org.values()
         if req is not DUPLICATED)
-    unmatched.sort(key=lambda req: (req['org'], req['num'], req['id']))
+    unmatched.sort(key=lambda req: (
+        org_mapping.get(req['org'], req['org']),
+        req['num'],
+        req['id']))
     writer.writerows(
         [org[x].encode('utf-8') for x in ('id', 'org', 'year', 'month',
             'num', 'summary', 'disp', 'pages',)]
@@ -89,9 +92,10 @@ def main():
     eng_reqs, eng_unmatched = group_requests_by_org(eng)
     fra_reqs, fra_unmatched = group_requests_by_org(fra)
 
-    org_mapping = unicode_csv_reader(ORG_MAPPING)
-    org_mapping_headings = next(org_mapping)
-    for eng_org, fra_org in org_mapping:
+    org_mapping_source = unicode_csv_reader(ORG_MAPPING)
+    org_mapping_headings = next(org_mapping_source)
+    org_mapping = dict((f, e) for e, f in org_mapping_source)
+    for fra_org, eng_org in org_mapping.items():
         eng = eng_reqs.get(eng_org, {})
         fra = fra_reqs.get(fra_org, {})
         matched_num = []
@@ -106,8 +110,10 @@ def main():
             del eng[num]
             del fra[num]
 
-    write_unmatched(eng_reqs, eng_unmatched, 'data/unmatched_eng.csv')
-    write_unmatched(fra_reqs, fra_unmatched, 'data/unmatched_fra.csv')
+    write_unmatched(eng_reqs, eng_unmatched, 'data/unmatched_eng.csv',
+        org_mapping)
+    write_unmatched(fra_reqs, fra_unmatched, 'data/unmatched_fra.csv',
+        org_mapping)
 
 
 main()
