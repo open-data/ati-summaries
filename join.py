@@ -31,6 +31,14 @@ def fix_org_name(name):
     name = ORG_FIXUPS.get(name, name)
     return name
 
+def fix_num_pages(pages):
+    if u'.' in pages:
+        try:
+            return unicode(int(float(pages) * 1000))
+        except ValueError:
+            pass
+    return pages
+
 def parse_source(src):
     for num, row in enumerate(unicode_csv_reader(src, delimiter="|")):
         assert len(row) == 10, (src, num, len(row))
@@ -42,7 +50,7 @@ def parse_source(src):
             'num': row[4],
             'summary': row[5],
             'disp': row[6],
-            'pages': row[7].replace(u'.', u''),
+            'pages': fix_num_pages(row[7]),
             'contact': row[8],
             }
 
