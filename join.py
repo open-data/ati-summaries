@@ -103,7 +103,7 @@ def write_matched(req_pairs, eng_org, fra_org, file_name):
     sheet.col(2).width = 15 * 256
     sheet.col(3).width = 30 * 256
     sheet.col(4).width = 30 * 256
-    sheet.col(5).width = 20 * 256
+    sheet.col(5).width = 40 * 256
 
     row = 2
     sheet.set_panes_frozen(True) # frozen headings instead of split panes
