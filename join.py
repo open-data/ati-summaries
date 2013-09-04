@@ -145,7 +145,7 @@ def main():
 
     org_mapping_source = unicode_csv_reader(ORG_MAPPING)
     org_mapping_headings = next(org_mapping_source)
-    org_mapping = dict((f, e) for e, f in org_mapping_source)
+    org_mapping = dict((o[1], o[0]) for o in org_mapping_source)
     for fra_org, eng_org in org_mapping.items():
         eng = eng_reqs.get(eng_org, {})
         fra = fra_reqs.get(fra_org, {})
@@ -172,4 +172,5 @@ def main():
         org_mapping)
 
 
-main()
+if __name__ == '__main__':
+    main()
