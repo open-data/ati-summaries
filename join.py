@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import re
 import csv
+import itertools
+
 import xlwt
 
 ENG_SOURCE = 'data/ati_en.csv'
@@ -32,12 +35,39 @@ def fix_org_name(name):
     return name
 
 def fix_num_pages(pages):
+    """
+    Some page numbers were entered with a "." thousands separator
+    which was then interpreted as a floating point by Excel.
+
+    Try to repair that damage.
+    """
     if u'.' in pages:
         try:
             return unicode(int(float(pages) * 1000))
         except ValueError:
             pass
     return pages
+
+def normalize_request_number(num):
+    """
+    Some input data includes request numbers entered with slight
+    variations such as: A2011-00013, A-2011-00013 and
+    A-2013-00001, A-2013-0001
+
+    This function normalizes request numbers by converting digits
+    to integers and removing non-word characters such as '-'
+    """
+
+    split_re = re.compile(
+        ur'[^\W\d]+' # "not (non-alphanumeric or numbers)" ~= only letters
+        ur'|\d+' # also group numbers together
+        , re.UNICODE)
+    return tuple(
+        int(g) if isdigit else g
+        for isdigit, group in itertools.groupby(
+            split_re.findall(num), key=lambda x: x.isdigit())
+        for g in group
+        )
 
 def parse_source(src):
     for num, row in enumerate(unicode_csv_reader(src, delimiter="|")):
@@ -48,6 +78,7 @@ def parse_source(src):
             'year': row[2],
             'month': row[3],
             'num': row[4],
+            'norm_num': normalize_request_number(row[4]),
             'summary': row[5],
             'disp': row[6],
             'pages': fix_num_pages(row[7]),
@@ -59,15 +90,15 @@ def group_requests_by_org(source):
     unmatched = []
     for req in source:
         requests = org_numbers.setdefault(req['org'], {})
-        previous = requests.get(req['num'])
+        previous = requests.get(req['norm_num'])
         if previous is DUPLICATED:
             unmatched.append(req)
         elif previous:
             unmatched.append(previous)
             unmatched.append(req)
-            requests[req['num']] = DUPLICATED
+            requests[req['norm_num']] = DUPLICATED
         else:
-            requests[req['num']] = req
+            requests[req['norm_num']] = req
 
     return org_numbers, unmatched
 
@@ -85,7 +116,7 @@ def write_unmatched(org_reqs, unmatched, file_name, org_mapping):
     print len(unmatched)
     unmatched.sort(key=lambda req: (
         org_mapping.get(req['org'], req['org']),
-        req['num'],
+        req['norm_num'],
         req['id']))
     writer.writerows(
         [org[x].encode('utf-8') for x in ('id', 'org', 'year', 'month',
