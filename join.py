@@ -94,6 +94,8 @@ def group_requests_by_org(source):
         if previous is DUPLICATED:
             unmatched.append(req)
         elif previous:
+            if all(v == req[k] for k, v in previous.items() if k != 'id'):
+                continue # ignore exact duplicates
             unmatched.append(previous)
             unmatched.append(req)
             requests[req['norm_num']] = DUPLICATED
