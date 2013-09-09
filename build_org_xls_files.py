@@ -114,8 +114,13 @@ def main():
                 continue
             matched_num.append(num)
 
+        if not matched_num:
+            continue
+
         if org['name']:
             write_matched([(eng[m], fra[m]) for m in matched_num], org)
+        else:
+            print "not writing:", len(matched_num), "-", org['eng']
 
         for num in matched_num:
             del eng[num]
