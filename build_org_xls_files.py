@@ -114,9 +114,8 @@ def main():
                 continue
             matched_num.append(num)
 
-        if org['eng'].startswith('Health Canada'):
-            write_matched([(eng[m], fra[m]) for m in matched_num],
-                org['eng'], org['fra'], 'data/health_canada.xls')
+        if org['name']:
+            write_matched([(eng[m], fra[m]) for m in matched_num], org)
 
         for num in matched_num:
             del eng[num]

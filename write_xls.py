@@ -1,10 +1,14 @@
 import xlwt
 
-def write_matched(req_pairs, eng_org, fra_org, file_name):
+OUTPUT_PATTERN = 'xls/{0}.xls'
+
+
+def write_matched(req_pairs, org):
     book = xlwt.Workbook()
     sheet = book.add_sheet('ATI AI')
-    sheet.write(0, 3, eng_org)
-    sheet.write(0, 4, fra_org)
+    sheet.write(0, 2, org['name'])
+    sheet.write(0, 3, org['eng'])
+    sheet.write(0, 4, org['fra'])
     for col, h in enumerate([u'Year / Annee', u'Month / Mois',
             u'Request Number / Numero de la demande',
             u'ENG Summary / ENG Sommaire de la demande',
@@ -37,4 +41,4 @@ def write_matched(req_pairs, eng_org, fra_org, file_name):
                 c('disp'), c('pages'), c('contact')]):
             sheet.write(row, col, t)
         row += 1
-    book.save(file_name)
+    book.save(OUTPUT_PATTERN.format(org['name']))
