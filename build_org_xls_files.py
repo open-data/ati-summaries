@@ -34,17 +34,21 @@ def group_requests_by_org(source):
     return org_numbers, unmatched
 
 
-def write_unmatched(org_reqs, unmatched, file_name, org_mapping):
+def write_unmatched(org_reqs, unmatched, file_name, org_mapping=None):
+    if org_mapping is None:
+        org_mapping = {}
+
     f = open(file_name, 'wb')
     writer = csv.writer(f)
 
     unmatched = list(unmatched)
-    print len(unmatched)
+    duplicated_in_source = len(unmatched)
+    print file_name, "duplicated in source:", duplicated_in_source
     unmatched.extend(req
         for org in org_reqs.values()
         for req in org.values()
         if req is not DUPLICATED)
-    print len(unmatched)
+    print file_name, "unmatched:", len(unmatched) - duplicated_in_source
     unmatched.sort(key=lambda req: (
         org_mapping.get(req['org'], req['org']),
         req['norm_num'],
@@ -55,6 +59,35 @@ def write_unmatched(org_reqs, unmatched, file_name, org_mapping):
         for org in unmatched)
 
 
+def load_organizations():
+    """
+    combine information from org mapping CSV and data.gc.ca orgs
+    """
+    with open(DATA_GC_CA_ORGS) as f:
+        data_gc_ca_orgs = json.loads(f.read())
+
+    org_mapping_source = unicode_csv_reader(ORG_MAPPING)
+    org_mapping_headings = next(org_mapping_source)
+    orgs = []
+    for row in org_mapping_source:
+        dept_id = None
+        name = None
+        if len(row) < 3:
+            print "no dept id:", json.dumps(row)
+        else:
+            dept_id = row[2]
+            if dept_id not in data_gc_ca_orgs:
+                print "dept_id not found:", json.dumps([row[0], row[2]])
+            else:
+                name = data_gc_ca_orgs[dept_id]['name']
+        org = {
+            'eng': row[0],
+            'fra': row[1],
+            'dept_id': dept_id,
+            'name': name,
+            }
+        orgs.append(org)
+    return orgs
 
 
 def main():
@@ -67,12 +100,11 @@ def main():
     eng_reqs, eng_unmatched = group_requests_by_org(eng)
     fra_reqs, fra_unmatched = group_requests_by_org(fra)
 
-    org_mapping_source = unicode_csv_reader(ORG_MAPPING)
-    org_mapping_headings = next(org_mapping_source)
-    org_mapping = dict((o[1], o[0]) for o in org_mapping_source)
-    for fra_org, eng_org in org_mapping.items():
-        eng = eng_reqs.get(eng_org, {})
-        fra = fra_reqs.get(fra_org, {})
+    orgs = load_organizations()
+
+    for org in orgs:
+        eng = eng_reqs.get(org['eng'], {})
+        fra = fra_reqs.get(org['fra'], {})
         matched_num = []
         for num, eng_req in eng.iteritems():
             if eng_req is DUPLICATED:
@@ -82,18 +114,17 @@ def main():
                 continue
             matched_num.append(num)
 
-        if eng_org.startswith('Health Canada'):
+        if org['eng'].startswith('Health Canada'):
             write_matched([(eng[m], fra[m]) for m in matched_num],
-                eng_org, fra_org, 'data/health_canada.xls')
+                org['eng'], org['fra'], 'data/health_canada.xls')
 
         for num in matched_num:
             del eng[num]
             del fra[num]
 
-    write_unmatched(eng_reqs, eng_unmatched, 'data/unmatched_eng.csv',
-        org_mapping)
+    write_unmatched(eng_reqs, eng_unmatched, 'data/unmatched_eng.csv')
     write_unmatched(fra_reqs, fra_unmatched, 'data/unmatched_fra.csv',
-        org_mapping)
+        dict((o['fra'], o['eng']) for o in orgs))
 
 
 if __name__ == '__main__':
