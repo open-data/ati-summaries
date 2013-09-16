@@ -6,6 +6,7 @@ OUTPUT_PATTERN = 'xls/{0}.xls'
 def write_matched(req_pairs, org):
     book = xlwt.Workbook()
     sheet = book.add_sheet('ATI AI')
+    sheet.write(0, 0, org['dept_id'])
     sheet.write(0, 2, org['name'])
     sheet.write(0, 3, org['eng'])
     sheet.write(0, 4, org['fra'])
