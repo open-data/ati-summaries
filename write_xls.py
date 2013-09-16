@@ -15,7 +15,9 @@ def write_matched(req_pairs, org):
             u'FRA Summary / FRA Sommaire de la demande',
             u'Disposition',
             u'Number of Pages / Nombre de pages', 
-            u'Contact Information / Information de contact']):
+            u'ENG Contact Information / ENG Information de contact',
+            u'FRA Contact Information / FRA Information de contact',
+            ]):
         sheet.write(1, col, h)
     sheet.col(0).width = 5 * 256
     sheet.col(1).width = 4 * 256
@@ -38,7 +40,7 @@ def write_matched(req_pairs, org):
             return eng[key]
         for col, t in enumerate([c('year'), c('month'),
                 c('num'), eng['summary'], fra['summary'],
-                c('disp'), c('pages'), c('contact')]):
+                c('disp'), c('pages'), eng['contact'], fra['contact']]):
             sheet.write(row, col, t)
         row += 1
     book.save(OUTPUT_PATTERN.format(org['name']))
