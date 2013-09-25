@@ -6,18 +6,24 @@ OUTPUT_PATTERN = 'xls/{0}.xls'
 def write_matched(req_pairs, org):
     book = xlwt.Workbook()
     sheet = book.add_sheet('ATI AI')
-    sheet.write(0, 0, int(org['dept_id']))
-    sheet.write(0, 2, org['name'])
-    sheet.write(0, 3, org['eng'])
-    sheet.write(0, 4, org['fra'])
-    for col, h in enumerate([u'Year / Annee', u'Month / Mois',
-            u'Request Number / Numero de la demande',
-            u'ENG Summary / ENG Sommaire de la demande',
-            u'FRA Summary / FRA Sommaire de la demande',
+    heading_xf = xlwt.easyxf('pattern: pattern solid, fore_color gray25;')
+    sheet.write(0, 0, int(org['dept_id']), heading_xf)
+    sheet.write(0, 1, '', heading_xf)
+    sheet.write(0, 2, org['name'], heading_xf)
+    sheet.write(0, 3, org['eng'], heading_xf)
+    sheet.write(0, 4, org['fra'], heading_xf)
+    sheet.write(0, 5, '', heading_xf)
+    sheet.write(0, 6, '', heading_xf)
+    heading_xf = xlwt.easyxf('font: bold on; '
+        'pattern: pattern solid, fore_color light_green;')
+    for col, h in enumerate([u'Year/Annee', u'Month/Mois',
+            u'Number/Numero',
+            u'ENG Summary/Sommaire',
+            u'FRA Summary/Sommaire',
             u'Disposition',
-            u'Number of Pages / Nombre de pages',
+            u'Pages',
             ]):
-        sheet.write(1, col, h)
+        sheet.write(1, col, h, heading_xf)
     sheet.col(0).width = 5 * 256
     sheet.col(1).width = 4 * 256
     sheet.col(2).width = 15 * 256
