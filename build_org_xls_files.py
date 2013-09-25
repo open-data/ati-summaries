@@ -18,6 +18,11 @@ def group_requests_by_org(source):
     org_numbers = {}
     unmatched = []
     for req in source:
+        try:
+            int(req['year']), int(req['month']), int(req['pages'])
+        except ValueError:
+            unmatched.append(req)
+            continue
         requests = org_numbers.setdefault(req['org'], {})
         previous = requests.get(req['norm_num'])
         if previous is DUPLICATED:
@@ -112,7 +117,8 @@ def main():
             fra_req = fra.get(num)
             if not fra_req or fra_req is DUPLICATED:
                 continue
-            if eng_req['pages'] != fra_req['pages']:
+            if any(eng_req[v] != fra_req[v] for v in
+                    ('pages', 'year', 'month')):
                 continue
             matched_num.append(num)
 
