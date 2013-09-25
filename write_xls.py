@@ -6,7 +6,7 @@ OUTPUT_PATTERN = 'xls/{0}.xls'
 def write_matched(req_pairs, org):
     book = xlwt.Workbook()
     sheet = book.add_sheet('ATI AI')
-    sheet.write(0, 0, org['dept_id'])
+    sheet.write(0, 0, int(org['dept_id']))
     sheet.write(0, 2, org['name'])
     sheet.write(0, 3, org['eng'])
     sheet.write(0, 4, org['fra'])
@@ -37,9 +37,9 @@ def write_matched(req_pairs, org):
             if eng[key] != fra[key]:
                 return eng[key] + u' / ' + fra[key]
             return eng[key]
-        for col, t in enumerate([c('year'), c('month'),
+        for col, t in enumerate([int(c('year')), int(c('month')),
                 c('num'), eng['summary'], fra['summary'],
-                c('disp'), c('pages')]):
+                c('disp'), int(c('pages'))]):
             sheet.write(row, col, t)
         row += 1
     book.save(OUTPUT_PATTERN.format(org['name']))
