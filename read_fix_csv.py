@@ -33,6 +33,7 @@ def fix_num_pages(pages):
     Try to repair that damage.
     """
     p = pages
+    # other junk seen in input data
     p = p.replace('pages', '')
     p = p.replace('page', '')
     p = p.replace(',', '')
@@ -72,6 +73,13 @@ def normalize_request_number(num):
 def parse_source(src):
     for num, row in enumerate(unicode_csv_reader(src, delimiter="|")):
         assert len(row) == 10, (src, num, len(row))
+        try:
+            int(fix_num_pages(row[6]))
+        except ValueError:
+            pass
+        else:
+            # disp and pages are reversed
+            row[6], row[7] = row[7], row[6]
         yield {
             'id': row[0],
             'org': fix_org_name(row[1]),
