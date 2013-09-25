@@ -32,12 +32,21 @@ def fix_num_pages(pages):
 
     Try to repair that damage.
     """
+    p = pages
+    p = p.replace('pages', '')
+    p = p.replace('page', '')
+    p = p.replace(',', '')
+    p = p.replace(' ', '')
+    p = p.replace('*', '')
     if u'.' in pages:
         try:
-            return unicode(int(float(pages) * 1000))
+            return unicode(int(float(p) * 1000))
         except ValueError:
             pass
-    return pages
+    try:
+        return unicode(int(p))
+    except ValueError:
+        return pages
 
 def normalize_request_number(num):
     """

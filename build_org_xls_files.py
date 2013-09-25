@@ -112,6 +112,8 @@ def main():
             fra_req = fra.get(num)
             if not fra_req or fra_req is DUPLICATED:
                 continue
+            if eng_req['pages'] != fra_req['pages']:
+                continue
             matched_num.append(num)
 
         if not matched_num:
