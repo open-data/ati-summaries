@@ -6,8 +6,8 @@ import json
 from read_fix_csv import unicode_csv_reader, parse_source
 from write_xls import write_matched
 
-ENG_SOURCE = 'data/ati_en.csv'
-FRA_SOURCE = 'data/ati_fr.csv'
+ENG_SOURCE = 'data/ai-utf8-eng.csv'
+FRA_SOURCE = 'data/ai-utf8-fra.csv'
 ORG_MAPPING = 'data/orgMapping.csv'
 DATA_GC_CA_ORGS = 'data/data_gc_ca_orgs.json'
 
@@ -57,9 +57,10 @@ def write_unmatched(org_reqs, unmatched, file_name, org_mapping=None):
     unmatched.sort(key=lambda req: (
         org_mapping.get(req['org'], req['org']),
         req['norm_num'],
-        req['id']))
+        req
+        ))
     writer.writerows(
-        [org[x].encode('utf-8') for x in ('id', 'org', 'year', 'month',
+        [org[x].encode('utf-8') for x in ('org', 'year', 'month',
             'num', 'summary', 'disp', 'pages',)]
         for org in unmatched)
 

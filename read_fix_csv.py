@@ -71,24 +71,23 @@ def normalize_request_number(num):
         )
 
 def parse_source(src):
-    for num, row in enumerate(unicode_csv_reader(src, delimiter="|")):
-        assert len(row) == 10, (src, num, len(row))
+    for num, row in enumerate(unicode_csv_reader(src)):
+        assert len(row) == 8, (src, num, len(row))
         try:
-            int(fix_num_pages(row[6]))
+            int(fix_num_pages(row[5]))
         except ValueError:
             pass
         else:
             # disp and pages are reversed
-            row[6], row[7] = row[7], row[6]
+            row[5], row[6] = row[6], row[5]
         yield {
-            'id': row[0],
-            'org': fix_org_name(row[1]),
-            'year': row[2],
-            'month': row[3],
-            'num': row[4],
-            'norm_num': normalize_request_number(row[4]),
-            'summary': row[5],
-            'disp': row[6],
-            'pages': fix_num_pages(row[7]),
-            'contact': row[8],
+            'org': fix_org_name(row[0]),
+            'year': row[1],
+            'month': row[2],
+            'num': row[3],
+            'norm_num': normalize_request_number(row[3]),
+            'summary': row[4],
+            'disp': row[5],
+            'pages': fix_num_pages(row[6]),
+            'contact': row[7],
             }
