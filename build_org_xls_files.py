@@ -108,6 +108,7 @@ def main():
 
     orgs = load_organizations()
 
+    matched_total = 0
     for org in orgs:
         eng = eng_reqs.get(org['eng'], {})
         fra = fra_reqs.get(org['fra'], {})
@@ -128,12 +129,15 @@ def main():
 
         if org['name']:
             write_matched([(eng[m], fra[m]) for m in matched_num], org)
+            matched_total += len(matched_num)
         else:
             print "not writing:", len(matched_num), "-", org['eng']
 
         for num in matched_num:
             del eng[num]
             del fra[num]
+
+    print "wrote: {0} eng+fra records".format(matched_total)
 
     write_unmatched(eng_reqs, eng_unmatched, 'data/unmatched_eng.csv')
     write_unmatched(fra_reqs, fra_unmatched, 'data/unmatched_fra.csv',
