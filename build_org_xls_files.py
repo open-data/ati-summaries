@@ -21,17 +21,17 @@ def group_requests_by_org(source):
         try:
             int(req['year']), int(req['month']), int(req['pages'])
         except ValueError:
-            unmatched.append(req)
+            unmatched.append(dict(req, reason='non-integer Y/M/pages'))
             continue
         requests = org_numbers.setdefault(req['org'], {})
         previous = requests.get(req['norm_num'])
         if previous is DUPLICATED:
-            unmatched.append(req)
+            unmatched.append(dict(req, reason='duplicate with differences'))
         elif previous:
             if all(v == req[k] for k, v in previous.items() if k != 'id'):
                 continue # ignore exact duplicates
-            unmatched.append(previous)
-            unmatched.append(req)
+            unmatched.append(dict(previous, reason='duplicate with differences'))
+            unmatched.append(dict(req, reason='duplicate with differences'))
             requests[req['norm_num']] = DUPLICATED
         else:
             requests[req['norm_num']] = req
@@ -49,7 +49,8 @@ def write_unmatched(org_reqs, unmatched, file_name, org_mapping=None):
     unmatched = list(unmatched)
     duplicated_in_source = len(unmatched)
     print file_name, "duplicated in source:", duplicated_in_source
-    unmatched.extend(req
+    unmatched.extend(
+        (req if 'reason' in req else dict(req, reason='no match found'))
         for org in org_reqs.values()
         for req in org.values()
         if req is not DUPLICATED)
@@ -61,7 +62,7 @@ def write_unmatched(org_reqs, unmatched, file_name, org_mapping=None):
         ))
     writer.writerows(
         [org[x].encode('utf-8') for x in ('org', 'year', 'month',
-            'num', 'summary', 'disp', 'pages',)]
+            'num', 'summary', 'disp', 'pages', 'reason',)]
         for org in unmatched)
 
 
@@ -114,13 +115,20 @@ def main():
         fra = fra_reqs.get(org['fra'], {})
         matched_num = []
         for num, eng_req in eng.iteritems():
-            if eng_req is DUPLICATED:
-                continue
             fra_req = fra.get(num)
-            if not fra_req or fra_req is DUPLICATED:
+            if eng_req is DUPLICATED:
+                if fra_req and fra_req is not DUPLICATED:
+                    fra_req['reason'] = 'matching eng record has errors'
+                continue
+            if fra_req is DUPLICATED:
+                eng_req['reason'] = 'matching fra record has errors'
+                continue
+            if not fra_req:
                 continue
             if any(eng_req[v] != fra_req[v] for v in
                     ('pages', 'year', 'month')):
+                eng_req['reason'] = 'matching fra record has different Y/M/pages'
+                fra_req['reason'] = 'matching eng record has different Y/M/pages'
                 continue
             matched_num.append(num)
 
