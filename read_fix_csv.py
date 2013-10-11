@@ -22,6 +22,7 @@ def unicode_csv_reader(src, dialect=csv.excel, **kwargs):
 
 def fix_org_name(name):
     name = name.replace(u'  ', u' ')
+    name = name.replace(u'  ', u' ')
     name = ORG_FIXUPS.get(name, name)
     return name
 
