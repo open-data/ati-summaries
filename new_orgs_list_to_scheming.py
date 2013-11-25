@@ -27,7 +27,7 @@ def main():
     for o in orgs:
         out.write(json.dumps({
             'title': o[0],
-            'name': org_name(o[1], o[5]),
+            'name': org_name(o[1], o[5], o[8]),
             'alternate_names': o[2],
             'homepage': o[3],
             'title_fr': o[4],
@@ -39,8 +39,6 @@ def main():
             'email': o[11],
             'address': o[12],
             'address_fr': o[13],
-            }) + '\n')
-
-
+            }, sort_keys=True) + '\n')
 
 main()
