@@ -324,11 +324,6 @@
     "title": "Transport Canada | Transports Canada", 
     "uuid": "AEAE485F-42DE-4D33-AFA3-F8A3A76FC663"
   }, 
-  "218": {
-    "name": "cida-acdi", 
-    "title": "Canadian International Development Agency | Agence canadienne de d\u00e9veloppement international", 
-    "uuid": "58C9589E-CFC7-437D-AB50-1EBD11E08D9D"
-  }, 
   "22": {
     "name": "ncc-ccn", 
     "title": "National Capital Commission | Commission de la capitale nationale", 
@@ -531,7 +526,7 @@
   }, 
   "285": {
     "name": "elections", 
-    "title": "Elections Canada", 
+    "title": "Elections Canada | \u00c9lections Canada", 
     "uuid": "177F4C5D-5EB5-469F-B0DB-7CBF3CC313F9"
   }, 
   "3": {
@@ -634,11 +629,6 @@
     "title": "Registrar of the Supreme Court of Canada and that portion of the federal public administration appointed under subsection 12(2) of the Supreme Court Act | Registraire de la Cour supr\u00eame du Canada et le secteur de l'administration publique f\u00e9d\u00e9rale nomm\u00e9 en vertu du paragraphe 12(2) de la Loi sur la Cour supr\u00eame", 
     "uuid": "6FAAC6D8-0E3C-4223-8280-CD9C057C5BA2"
   }, 
-  "64": {
-    "name": "dfait-maeci", 
-    "title": "Foreign Affairs and International Trade Canada | Affaires \u00e9trang\u00e8res et Commerce international Canada", 
-    "uuid": "1514CBB9-9EC7-42AC-9E31-B97E78926ACC"
-  }, 
   "66": {
     "name": "mpcc-cppm", 
     "title": "Military Police Complaints Commission of Canada | Commission d'examen des plaintes concernant la police militaire du Canada", 
@@ -708,6 +698,16 @@
     "name": "ppsc-sppc", 
     "title": "Public Prosecution Service of Canada | Service des poursuites p\u00e9nales du Canada", 
     "uuid": "3E9C5012-AD1D-452C-9432-4C3A66E5F1F8"
+  }, 
+  "98989": {
+    "name": "dfatd-maecd", 
+    "title": "Foreign Affairs, Trade and Development Canada | Affaires \u00e9trang\u00e9res, Commerce et D\u00e9veloppement Canada", 
+    "uuid": "d7c2580f-89c5-4705-9d56-6b0e8e5d9538"
+  }, 
+  "98990": {
+    "name": "boc-bdc", 
+    "title": "Bank of Canada | Banque du Canada", 
+    "uuid": "d06a897a-3b1d-4a56-add5-17d3b82863e1"
   }, 
   "99": {
     "name": "ec", 
