@@ -18,7 +18,7 @@ def org_name(en_abbr, fr_abbr, dept_no):
         return "org" + dept_no
     if en_abbr == fr_abbr:
         return en_abbr.lower()
-    return (en_abbr + '-' + fr_abbr).lower()
+    return (en_abbr + '-' + fr_abbr).lower().replace(' ', '')
 
 def main():
     orgs = unicode_csv_reader(SOURCE_ORGS)
