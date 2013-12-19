@@ -53,6 +53,7 @@ def main():
             'email': o[11],
             'address': o[12],
             'address_fr': o[13],
+            'type': 'organization',
             }, sort_keys=True) + '\n')
 
 main()
