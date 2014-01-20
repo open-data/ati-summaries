@@ -29,9 +29,10 @@ def main():
         if o[0] == 'English':
             break
     for o in orgs:
-        if o[8] in seen_department_numbers:
+        if not o[8] or o[8] in seen_department_numbers:
             print 'reused department number', o[8], o[1], o[5]
             old_org = None
+            o[8] = ''
         else:
             seen_department_numbers.add(o[8])
             old_org = org_uuids.get(o[8])
