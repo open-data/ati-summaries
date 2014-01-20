@@ -21,6 +21,7 @@ def org_name(en_abbr, fr_abbr, dept_no):
     return (en_abbr + '-' + fr_abbr).lower()
 
 def main():
+    seen_department_numbers = set()
     orgs = unicode_csv_reader(SOURCE_ORGS)
     out = open(OUTPUT_JSONL, 'w')
     org_uuids = json.loads(open(ORG_UUIDS).read())
@@ -28,7 +29,12 @@ def main():
         if o[0] == 'English':
             break
     for o in orgs:
-        old_org = org_uuids.get(o[8])
+        if o[8] in seen_department_numbers:
+            print 'reused department number', o[8], o[1], o[5]
+            old_org = None
+        else:
+            seen_department_numbers.add(o[8])
+            old_org = org_uuids.get(o[8])
         name = org_name(o[1], o[5], o[8]).replace(' ', '')
         assert name
         if old_org:
