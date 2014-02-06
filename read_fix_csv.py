@@ -73,7 +73,7 @@ def normalize_request_number(num):
 
 def parse_source(src):
     for num, row in enumerate(unicode_csv_reader(src)):
-        assert len(row) == 8, (src, num, len(row))
+        assert len(row) == 7, (src, num + 1, row)
         try:
             int(fix_num_pages(row[5]))
         except ValueError:
@@ -90,5 +90,4 @@ def parse_source(src):
             'summary': row[4],
             'disp': row[5],
             'pages': fix_num_pages(row[6]),
-            'contact': row[7],
             }

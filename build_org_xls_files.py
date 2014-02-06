@@ -8,8 +8,7 @@ from write_xls import write_matched
 
 ENG_SOURCE = 'data/ai-utf8-eng.csv'
 FRA_SOURCE = 'data/ai-utf8-fra.csv'
-ORG_MAPPING = 'data/orgMapping.csv'
-DATA_GC_CA_ORGS = 'data/data_gc_ca_orgs.json'
+ORGS = 'data/orgs.jsonl'
 
 DUPLICATED = 'duplicated'
 
@@ -67,33 +66,26 @@ def write_unmatched(org_reqs, unmatched, file_name, org_mapping=None):
 
 
 def load_organizations():
-    """
-    combine information from org mapping CSV and data.gc.ca orgs
-    """
-    with open(DATA_GC_CA_ORGS) as f:
-        data_gc_ca_orgs = json.loads(f.read())
-
-    org_mapping_source = unicode_csv_reader(ORG_MAPPING)
-    org_mapping_headings = next(org_mapping_source)
     orgs = []
-    for row in org_mapping_source:
-        dept_id = None
-        name = None
-        if len(row) < 3:
-            print "no dept id:", json.dumps(row)
+    dept_ids = set()
+    for line in open(ORGS):
+        org = json.loads(line)
+        dept_id = org.get('department_number')
+        if not dept_id:
+            print "no dept id:", org['name']
+            continue
         else:
-            dept_id = row[2]
-            if dept_id not in data_gc_ca_orgs:
-                print "dept_id not found:", json.dumps([row[0], row[2]])
-            else:
-                name = data_gc_ca_orgs[dept_id]['name']
-        org = {
-            'eng': row[0],
-            'fra': row[1],
+            if dept_id in dept_ids:
+                print "dept id repeated:", dept_id
+            dept_ids.add(dept_id)
+        if not org.get('title_fr'):
+            print "no title_fr", org['name']
+        orgs.append({
+            'eng': org['title'],
+            'fra': org.get('title_fr', org['title']),
             'dept_id': dept_id,
-            'name': name,
-            }
-        orgs.append(org)
+            'name': org['name'],
+            })
     return orgs
 
 
