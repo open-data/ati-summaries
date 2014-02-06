@@ -50,6 +50,12 @@ def fix_num_pages(pages):
     except ValueError:
         return pages
 
+def fix_numeric(num):
+    try:
+        return unicode(int(num))
+    except ValueError:
+        return num
+
 def normalize_request_number(num):
     """
     Some input data includes request numbers entered with slight
@@ -83,8 +89,8 @@ def parse_source(src):
             row[5], row[6] = row[6], row[5]
         yield {
             'org': fix_org_name(row[0]),
-            'year': row[1],
-            'month': row[2],
+            'year': fix_numeric(row[1]),
+            'month': fix_numeric(row[2]),
             'num': row[3],
             'norm_num': normalize_request_number(row[3]),
             'summary': row[4],
