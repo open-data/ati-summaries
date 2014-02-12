@@ -13,10 +13,11 @@ ORGS = 'data/orgs.jsonl'
 DUPLICATED = 'duplicated'
 
 
-def group_requests_by_org(source):
+def group_requests_by_org(source, alternates):
     org_numbers = {}
     unmatched = []
     for req in source:
+        req['org'] = alternates.get(req['org'], req['org'])
         try:
             int(req['year']), int(req['month']), int(req['pages'])
         except ValueError:
@@ -85,6 +86,8 @@ def load_organizations():
             'fra': org.get('title_fr', org['title']),
             'dept_id': dept_id,
             'name': org['name'],
+            'alternate_names': org['alternate_names'],
+            'alternate_names_fr': org['alternate_names_fr'],
             })
     return orgs
 
@@ -96,10 +99,17 @@ def main():
     eng_headings = next(eng)
     fra_headings = next(fra)
 
-    eng_reqs, eng_unmatched = group_requests_by_org(eng)
-    fra_reqs, fra_unmatched = group_requests_by_org(fra)
-
     orgs = load_organizations()
+    alternates = dict([
+        (alt.strip(), org[orig])
+        for org in orgs
+        for altname, orig in [
+            ('alternate_names', 'eng'), ('alternate_names_fr', 'fra')]
+        for alt in org[altname].split(',')
+        if alt.strip()])
+
+    eng_reqs, eng_unmatched = group_requests_by_org(eng, alternates)
+    fra_reqs, fra_unmatched = group_requests_by_org(fra, alternates)
 
     matched_total = 0
     for org in orgs:
