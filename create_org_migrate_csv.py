@@ -20,6 +20,13 @@ def main():
             if po['uuid'] == po['uuid'].upper():
                 # dirty hack: portal uuids are all uppercase
                 pilot_uuid = po['uuid']
+        else:
+            for i, po in portal_orgs.iteritems():
+                if po['name'] == org['name']:
+                    original_name = po['name']
+                    if po['uuid'] == po['uuid'].upper():
+                        pilot_uuid = po['uuid']
+                    break
         migrate.append((
             org['name'],
             org['title'],
