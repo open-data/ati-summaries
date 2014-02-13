@@ -29,6 +29,7 @@ def main():
                     original_name = po['name']
                     if po['uuid'] == po['uuid'].upper():
                         pilot_uuid = po['uuid']
+                    del portal_orgs[i]
                     break
         migrate.append((
             org['name'],
