@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import json
+import sys
 
 ORGS = 'data/orgs.jsonl'
 DATA_GC_CA_ORGS = 'data/data_gc_ca_orgs.json'
@@ -38,6 +39,9 @@ def main():
     migrate.sort()
     for line in migrate:
         print ','.join('"%s"' % v.encode('utf-8') for v in line)
+
+    for po in portal_orgs.iteritems():
+        sys.stderr.write(repr(po)+'\n')
 
 
 if __name__ == '__main__':
