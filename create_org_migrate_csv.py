@@ -14,9 +14,10 @@ def main():
         dept_id = org.get('department_number')
         if not dept_id:
             continue
-        original_name = pilot_uuid = ''
+        original_name = pilot_uuid = original_title = ''
         if dept_id in portal_orgs:
             po = portal_orgs.pop(dept_id)
+            original_title = po['title'].split('|')[0].strip()
             original_name = po['name']
             if po['uuid'] == po['uuid'].upper():
                 # dirty hack: portal uuids are all uppercase
@@ -24,6 +25,7 @@ def main():
         else:
             for i, po in portal_orgs.iteritems():
                 if po['name'] == org['name']:
+                    original_title = po['title'].split('|')[0].strip()
                     original_name = po['name']
                     if po['uuid'] == po['uuid'].upper():
                         pilot_uuid = po['uuid']
@@ -32,7 +34,8 @@ def main():
             org['name'],
             org['title'],
             org['alternate_names'] if org['alternate_names'] != org['title'] else '',
-            original_name,
+            original_title if original_title != org['title'] else '',
+            original_name if original_name != org['name'] else '',
             pilot_uuid,
             ))
 
