@@ -25,7 +25,7 @@ def main():
             pilot_uuid = po['uuid']
         else:
             for i, po in portal_orgs.iteritems():
-                if po['name'] == org['name']:
+                if po['name'] == org['name'] or po['uuid'] == org['id']:
                     original_title = po['title'].split('|')[0].strip()
                     original_name = po['name']
                     pilot_uuid = po['uuid']
