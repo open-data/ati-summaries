@@ -37,6 +37,11 @@ def main():
             seen_department_numbers.add(o[8])
             old_org = org_uuids.get(o[8])
         name = org_name(o[1], o[5], o[8]).replace(' ', '')
+        if not old_org:
+            for po in org_uuids.itervalues():
+                if po['name'] == name:
+                    old_org = po
+                    break
         assert name
         if old_org:
             oid = old_org['uuid']
