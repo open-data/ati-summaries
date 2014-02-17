@@ -6,7 +6,10 @@ import sys
 ORGS = 'data/orgs.jsonl'
 DATA_GC_CA_ORGS = 'data/data_gc_ca_orgs.json'
 
+ORG_MIGRATE = 'data/org-migrate.csv'
+
 def main():
+    out = open(ORG_MIGRATE, 'w')
     migrate = []
     portal_orgs = json.load(open(DATA_GC_CA_ORGS))
     for line in open(ORGS):
@@ -19,16 +22,13 @@ def main():
             po = portal_orgs.pop(dept_id)
             original_title = po['title'].split('|')[0].strip()
             original_name = po['name']
-            if po['uuid'] == po['uuid'].upper():
-                # dirty hack: portal uuids are all uppercase
-                pilot_uuid = po['uuid']
+            pilot_uuid = po['uuid']
         else:
             for i, po in portal_orgs.iteritems():
                 if po['name'] == org['name']:
                     original_title = po['title'].split('|')[0].strip()
                     original_name = po['name']
-                    if po['uuid'] == po['uuid'].upper():
-                        pilot_uuid = po['uuid']
+                    pilot_uuid = po['uuid']
                     del portal_orgs[i]
                     break
         migrate.append((
@@ -42,7 +42,7 @@ def main():
 
     migrate.sort()
     for line in migrate:
-        print ','.join('"%s"' % v.encode('utf-8') for v in line)
+        out.write(','.join('"%s"' % v.encode('utf-8') for v in line) + '\n')
 
     for po in portal_orgs.iteritems():
         sys.stderr.write(repr(po)+'\n')
