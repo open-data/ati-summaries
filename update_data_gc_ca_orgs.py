@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-DATA_GC_CA = "http://data.gc.ca/data/en/"
+DATA_GC_CA = "http://registry.statcan.gc.ca/en/"
 OUTPUT_FILE = "data/data_gc_ca_orgs.json"
 
 import json
