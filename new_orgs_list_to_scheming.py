@@ -29,8 +29,8 @@ def main():
         if o[0] == 'English':
             break
     for o in orgs:
-        if '(' in o[0]:
-            # sub-orgs get no dept. number
+        if '(2)' not in o[0] and '(' in o[0]:
+            # hack: sub-orgs get no dept. number
             o[8] = ''
         elif o[8] and o[8] in seen_department_numbers:
             print 'reused department number', o[8], o[1], o[5]
@@ -42,6 +42,9 @@ def main():
         name = org_name(o[1], o[5], o[8]).replace(' ', '')
         if not old_org:
             for po in org_uuids.itervalues():
+                if po['name'] == 'boc-bdc' and name == 'bc':
+                    old_org = po
+                    break
                 if po['name'] == name:
                     old_org = po
                     break
