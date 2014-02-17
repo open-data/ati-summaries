@@ -16,6 +16,7 @@ def main():
             'fra': org['title_fr'],
             'id': int(org['department_number']),
             'key': org['name'],
+            'pilot_uuid': org['id'],
             })
     out = json.dumps(choices, indent=2, sort_keys=True,
         separators=(', ', ': '))
