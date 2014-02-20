@@ -32,6 +32,7 @@ def main():
         if '(2)' not in o[0] and '(' in o[0]:
             # hack: sub-orgs get no dept. number
             o[8] = ''
+            old_org = None
         elif o[8] and o[8] in seen_department_numbers:
             print 'reused department number', o[8], o[1], o[5]
             old_org = None
