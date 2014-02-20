@@ -7,6 +7,7 @@ INPUT_JSONL = 'data/orgs.jsonl'
 for l in open(INPUT_JSONL):
     org = json.loads(l)
     print json.dumps({
+        'id': org['id'],
         'name': org['name'],
         'title' : u'%s | %s' % (org['title'], org['title_fr']),
         'extras': [
