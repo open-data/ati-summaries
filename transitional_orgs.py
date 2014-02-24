@@ -14,5 +14,6 @@ for l in open(INPUT_JSONL):
             {'key': 'department_number', 'value': org['department_number']},
             {'key': 'shortform', 'value': org['shortform']},
             {'key': 'shortform_fr', 'value': org['shortform_fr']},
+            {'key': 'ati_email', 'value': org['email']},
             ],
         })
